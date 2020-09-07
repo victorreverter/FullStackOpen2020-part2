@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
+
+import Filter from '../src/Filter';
+import Form from '../src/Form';
+import Persons from '../src/Persons';
 import './index.css';
 
 const App = () => {
@@ -13,13 +17,13 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filterArr, setNewFilterArr] = useState([...persons]);
 
-  const handlePersons = filterArr.map((item) => {
-    return (
-      <h4 key={item.name}>
-        {item.name} {item.number}
-      </h4>
-    );
-  });
+  // const handlePersons = filterArr.map((item) => {
+  //   return (
+  //     <h4 key={item.name}>
+  //       {item.name} {item.number}
+  //     </h4>
+  //   );
+  // });
 
   const handleFilter = (event) => {
     event.preventDefault();
@@ -62,15 +66,19 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>      
-      <form>
+      <h2>Phonebook</h2>    
+
+      {/* <form>
         <div>
           Filter shown with: <input id="filterInput" onChange={handleFilter} />
         </div>
-      </form>
+      </form> */}
+
+      <Filter filterHandle={handleFilter} />
 
       <h2>Add a New</h2>
-      <form>
+
+      {/* <form>
         <div>
           name: <input id="nameInput" onChange={handleChangeName} />
         </div>
@@ -82,9 +90,14 @@ const App = () => {
             add
           </button>
         </div>
-      </form>
+      </form> */}
+
+      <Form nameHandle={handleChangeName} numberHandle={handleChangeNumber} clickHandle={handleClick} />
+
       <h2>Numbers</h2>
-      {handlePersons}
+
+      {/* {handlePersons} */}
+      <Persons personsHandled={filterArr} />
 
       <div>debug: {newName}</div>
     </div>
