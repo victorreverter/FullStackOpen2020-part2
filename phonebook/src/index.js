@@ -66,37 +66,16 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>    
-
-      {/* <form>
-        <div>
-          Filter shown with: <input id="filterInput" onChange={handleFilter} />
-        </div>
-      </form> */}
+      <h2>Phonebook</h2>
 
       <Filter filterHandle={handleFilter} />
 
       <h2>Add a New</h2>
 
-      {/* <form>
-        <div>
-          name: <input id="nameInput" onChange={handleChangeName} />
-        </div>
-        <div>
-          number: <input id="numberInput" onChange={handleChangeNumber} />
-        </div>
-        <div>
-          <button onClick={handleClick} type="submit">
-            add
-          </button>
-        </div>
-      </form> */}
-
       <Form nameHandle={handleChangeName} numberHandle={handleChangeNumber} clickHandle={handleClick} />
 
       <h2>Numbers</h2>
 
-      {/* {handlePersons} */}
       <Persons personsHandled={filterArr} />
 
       <div>debug: {newName}</div>
@@ -105,8 +84,3 @@ const App = () => {
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
