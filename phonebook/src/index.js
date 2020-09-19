@@ -76,6 +76,11 @@ const App = () => {
       if (window.confirm(mssg)){
 
         agendaService.numberUpdate(newName, newNumber).then(returnedDat => {
+          document.querySelector("#nameInput").value = "";
+          document.querySelector("#numberInput").value = "";
+          setNewName("");
+          setNewNumber("");
+          
           // console.log(persons);
           
           const newArr = persons.map(item => item.id === returnedDat.id ? {...item, number: returnedDat.number} : item);
@@ -83,8 +88,6 @@ const App = () => {
           // console.log(persons);
           // console.log(newArr);     
 
-          setNewName("");
-          setNewNumber("");
           setPersons(newArr);
           setNewFilterArr(newArr);
         });
