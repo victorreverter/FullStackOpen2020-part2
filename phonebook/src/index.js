@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 
-import Filter from '../src/Filter';
-import Form from '../src/Form';
-import Persons from '../src/Persons';
+import Filter from './Filter';
+import Form from './Form';
+import Persons from './Persons';
+import Notification from "./Notification";
 import './index.css';
 
 import agendaService from "./services/agenda";
@@ -15,6 +16,8 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filterArr, setNewFilterArr] = useState([...persons]);
+  const [notification, setNotification] = useState("");
+  const [notificationStatus, setNotificationStatus] = useState("");
 
   useEffect(() => {
     console.log('effect');
@@ -74,23 +77,33 @@ const App = () => {
       const mssg = `${newName} is already added to phonebook but the number is different. Do you want update the number?`;
       
       if (window.confirm(mssg)){
-
-        agendaService.numberUpdate(newName, newNumber).then(returnedDat => {
+        agendaService.numberUpdate(newName, newNumber).then((returnedDat) => {
           document.querySelector("#nameInput").value = "";
           document.querySelector("#numberInput").value = "";
           setNewName("");
           setNewNumber("");
-          
+
           // console.log(persons);
-          
-          const newArr = persons.map(item => item.id === returnedDat.id ? {...item, number: returnedDat.number} : item);
-          
+
+          const newArr = persons.map((item) =>
+            item.id === returnedDat.id
+              ? { ...item, number: returnedDat.number }
+              : item
+          );
+
           // console.log(persons);
-          // console.log(newArr);     
+          // console.log(newArr);
 
           setPersons(newArr);
           setNewFilterArr(newArr);
         });
+
+        // Added New Number Successfull
+        setNotification(`The number of ${newName} has been modified`);
+        setNotificationStatus("num-modified");
+        setTimeout(() => {
+          setNotification(null);
+        }, 5000);
       }
 
     } else {
@@ -106,6 +119,13 @@ const App = () => {
         setNewName("");
         setNewNumber("");
       });
+
+      // Added Notification Successfull
+      setNotification(`Added ${newName}`);
+      setNotificationStatus('successfull');
+      setTimeout(() => {
+        setNotification(null);
+      }, 5000);
     }
   };
 
@@ -126,8 +146,10 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="wrap">
       <h2>Phonebook</h2>
+
+      <Notification message={notification} status={notificationStatus} />
 
       <Filter filterHandle={handleFilter} />
 

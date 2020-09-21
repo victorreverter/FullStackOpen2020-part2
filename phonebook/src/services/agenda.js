@@ -16,7 +16,9 @@ const deletetion = (delPersonID, delPerson) => {
 };
 
 const numberUpdate = (id, newNum) => {
-  const request = axios.put(`${baseUrl}/${id}`, {name: id, number: newNum});
+  // const request = axios.put(`${baseUrl}/${id}`, {name: id, number: newNum});
+  // return request.then((response) => response.data);
+  const request = axios.put(`${baseUrl}/${id}`, { name: id, number: newNum });
   return request.then((response) => response.data);
 };
 

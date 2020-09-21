@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Victor",
-      "number": "345345-345-99",
+      "number": "223323-2312-99",
       "id": "Victor"
     },
     {
@@ -26,9 +26,14 @@
       "id": "Martin"
     },
     {
-      "name": "",
-      "number": "",
-      "id": "M5ztpHS"
+      "name": "Tadej",
+      "number": "123-23434-666",
+      "id": "Tadej"
+    },
+    {
+      "name": "Erbiti",
+      "number": "12312-12333-2323",
+      "id": "Erbiti"
     }
   ]
 }
